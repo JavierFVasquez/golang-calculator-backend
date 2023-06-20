@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  addition:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: bin/v1/addition
+      Runtime: go1.x
+      Timeout: 10
+      Events:
+        ApiGatewayEvent:
+          Type: Api
+          Properties:
+            Path: /addition
+            Method: post
+      Environment:
+        Variables:
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: truenorth
+  subtraction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: bin/v1/subtraction
+      Runtime: go1.x
+      Events:
+        ApiGatewayEvent:
+          Type: Api
+          Properties:
+            Path: /subtraction
+            Method: post
+      Environment:
+        Variables:
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: truenorth
