@@ -13,17 +13,17 @@ import (
 
 type Response events.APIGatewayProxyResponse
 
-type AdditionController struct {
+type DivisionController struct {
 	service services.BasicOperationServiceIF
 }
 
-func NewAdditionController(createService services.BasicOperationServiceIF) AdditionController {
-	return AdditionController{
+func NewDivisionController(createService services.BasicOperationServiceIF) DivisionController {
+	return DivisionController{
 		service: createService,
 	}
 }
 
-func (controller *AdditionController) AdditionController(ctx context.Context, request events.APIGatewayProxyRequest) (Response, error) {
+func (controller *DivisionController) DivisionController(ctx context.Context, request events.APIGatewayProxyRequest) (Response, error) {
 	ctxWithValue, err := auth.AuthMiddleware(ctx, request)
 	if err != nil {
 		return Response{StatusCode: 401}, nil
@@ -36,7 +36,7 @@ func (controller *AdditionController) AdditionController(ctx context.Context, re
 		return Response{StatusCode: 400}, err
 	}
 
-	operation.Operation = models.ADDITION
+	operation.Operation = models.DIVISION
 
 	record, operationErr := controller.service.BasicOperation(*ctxWithValue, operation)
 	if operationErr != nil {

@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"math"
 
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/repositories"
@@ -11,46 +12,34 @@ import (
 	"github.com/rs/zerolog"
 )
 
-type BasicOperationService struct {
+type SquareRootService struct {
 	recordRepo    repositories.RecordRepositoryIF
 	operationRepo repositories.OperationRepositoryIF
 	logger        *zerolog.Logger
 }
 
-func NewBasicOperationService(
+func NewSquareRootService(
 	recordRepo repositories.RecordRepositoryIF,
 	operationRepo repositories.OperationRepositoryIF,
 	log *zerolog.Logger,
-) *BasicOperationService {
-	l := log.With().Str("resource", "create_basic_operation_service").Logger()
+) *SquareRootService {
+	l := log.With().Str("resource", "create_square_root_service").Logger()
 
-	return &BasicOperationService{
+	return &SquareRootService{
 		recordRepo:    recordRepo,
 		operationRepo: operationRepo,
 		logger:        &l,
 	}
 }
 
-func (service *BasicOperationService) BasicOperation(
+func (service *SquareRootService) SquareRoot(
 	ctx context.Context,
 	operation models.Operation,
 ) (*models.Record, *error) {
 
-	var result float64
-	switch operation.Operation {
-	case models.ADDITION:
-		result = operation.Operand1 + operation.Operand2
-	case models.SUBSTRACTION:
-		result = operation.Operand1 - operation.Operand2
-	case models.MULTIPLICATION:
-		result = operation.Operand1 * operation.Operand2
-	case models.DIVISION:
-		result = operation.Operand1 / operation.Operand2
-	default:
-		result = 0
-	}
+	result := math.Sqrt(operation.Operand1)
 
-	operationFromDB, err := service.operationRepo.GetOperation(ctx, operation.Operation)
+	operationFromDB, err := service.operationRepo.GetOperation(ctx, models.SQUARE_ROOT)
 	if err != nil {
 		fmt.Println("Get operation record error")
 		return nil, &err

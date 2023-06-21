@@ -35,7 +35,7 @@ func PaginationStep(options *aggregationModels.AggregationPaginationOptions) mon
 	}
 
 	if options.Sort != "" && !options.GetAll {
-		paginationStep = append(paginationStep, bson.D{{Key: "$sort", Value: bson.D{{Key: options.Sort, Value: 1}}}})
+		paginationStep = append(paginationStep, bson.D{{Key: "$sort", Value: bson.D{{Key: options.Sort, Value: -1}}}})
 	}
 
 	// Metadata Step

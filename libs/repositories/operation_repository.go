@@ -26,7 +26,6 @@ func NewOperationRepository(mongo *clients.MongoClient, tableName string, log *z
 	}
 }
 
-
 func (repo *OperationRepository) GetOperation(ctx context.Context, id models.Operator) (*models.Operation, error) {
 
 	operation := &models.Operation{}

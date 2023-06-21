@@ -11,15 +11,7 @@ require (
 )
 
 require (
-	github.com/Masterminds/semver v1.5.0 // indirect
-	github.com/Masterminds/vcs v1.13.3 // indirect
-	github.com/armon/go-radix v1.0.0 // indirect
-	github.com/boltdb/bolt v1.3.1 // indirect
-	github.com/golang/dep v0.5.4 // indirect
-	github.com/jmank88/nuts v0.4.0 // indirect
-	github.com/nightlyone/lockfile v1.0.0 // indirect
-	github.com/pelletier/go-toml v1.9.5 // indirect
-	github.com/sdboyer/constext v0.0.0-20170321163424-836a14457353 // indirect
+	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/stretchr/testify v1.8.2 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20230530153820-e85fd2cbaebc // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20230530153820-e85fd2cbaebc // indirect
@@ -37,6 +29,7 @@ require (
 	cloud.google.com/go/longrunning v0.4.1 // indirect
 	cloud.google.com/go/storage v1.30.1 // indirect
 	github.com/aws/aws-lambda-go v1.41.0
+	github.com/aws/aws-sdk-go v1.44.285
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/golang/snappy v0.0.4 // indirect

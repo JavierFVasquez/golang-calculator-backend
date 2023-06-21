@@ -30,17 +30,15 @@ func NewRecordRepository(mongo *clients.MongoClient, tableName string, log *zero
 	}
 }
 
-
 func (repo *RecordRepository) CreateNewRecord(ctx context.Context, operation models.Operation, newUserBalance float64) (*models.Record, error) {
-	user:=ctx.Value(key("user"))
-	if user != nil {
+	if user := ctx.Value("user"); user != nil {
 		if userValue, ok := user.(models.User); ok {
-			record := models.NewRecord(userValue, operation, 2000, 5000)
+			record := models.NewRecord(userValue, operation, operation.Cost, newUserBalance)
 			if _, err := repo.collection.InsertOne(ctx, record); err != nil {
 				repo.logger.Err(err).Msg("Store record error")
 				return nil, err
 			}
-			
+
 			return record, nil
 		}
 	}

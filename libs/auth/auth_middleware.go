@@ -1,95 +1,61 @@
 package auth
 
-// import (
-// 	"strings"
+import (
+	"context"
+	"errors"
+	"fmt"
+	"strings"
 
-// 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/clients"
-// 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
+	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
+	"github.com/aws/aws-lambda-go/events"
 
-// 	"firebase.google.com/go/auth"
-// 	"github.com/gofiber/fiber/v2"
-// )
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/cognitoidentityprovider"
+)
 
-// const AuthUserKey = "authUser"
+func AuthMiddleware(ctx context.Context, request events.APIGatewayProxyRequest) (*context.Context, *error) {
+	authToken := strings.Replace(request.Headers["Authorization"], "Bearer ", "", 1)
 
-// type AuthUser struct {
-// 	UID           string
-// 	ID_           string
-// 	Email         string
-// 	EmailVerified bool
-// 	Name          string
-// 	Roles         []string
-// }
+	sess := session.Must(session.NewSessionWithOptions(session.Options{
+		Config: aws.Config{
+			Region: aws.String("us-east-1"),
+		},
+	}))
 
-// type AuthMiddlewareConfig struct {
-// 	Firebase   clients.FirebaseClientIF
-// 	IgnoreUrls []string
-// }
+	cognitoClient := cognitoidentityprovider.New(sess)
 
-// func NewAuthMiddleware(cfg AuthMiddlewareConfig) fiber.Handler {
-// 	return func(c *fiber.Ctx) error {
-// 		// Check ignored URLS
-// 		url := c.Method() + "::" + c.Path()
-// 		if cfg.IgnoreUrls != nil && len(cfg.IgnoreUrls) > 0 {
-// 			for i := range cfg.IgnoreUrls {
-// 				if cfg.IgnoreUrls[i] == url {
-// 					return c.Next()
-// 				}
-// 			}
-// 		}
+	input := &cognitoidentityprovider.GetUserInput{
+		AccessToken: aws.String(authToken),
+	}
 
-// 		token := strings.Split(c.Get(fiber.HeaderAuthorization), " ")
-// 		if len(token) != 2 || len(token) > 0 && token[0] != "Bearer" {
-// 			err := models.ErrInvalidToken
-// 			return c.Status(err.HttpStatusCode).JSON(err)
-// 		}
+	result, err := cognitoClient.GetUser(input)
+	if err != nil {
+		fmt.Println("Error al obtener el usuario:", err)
+		err := errors.New("INVALID_TOKEN")
+		return nil, &err
+	}
+	var userId string
+	var userName string
+	var userEmail string
 
-// 		user, err := cfg.Firebase.Auth(c.Context(), token[1])
-// 		if err != nil {
-// 			err := models.ErrInvalidToken
-// 			return c.Status(err.HttpStatusCode).JSON(err)
-// 		}
+	for _, att := range result.UserAttributes {
+		switch *att.Name {
+		case "email":
+			userEmail = *att.Value
+		case "name":
+			userName = *att.Value
+		case "sub":
+			userId = *att.Value
+		}
+	}
 
-// 		c.Locals(AuthUserKey, parseAuthUser(user))
-// 		return c.Next()
-// 	}
-// }
+	authUser := models.User{
+		ID:    userId,
+		Name:  userName,
+		Email: userEmail,
+	}
+	ctxWithValue := context.WithValue(ctx, "user", authUser)
 
-// func GetAuthUser(c *fiber.Ctx) *AuthUser {
-// 	rawUser := c.Locals(AuthUserKey)
-// 	return rawUser.(*AuthUser)
-// }
-
-// func parseAuthUser(token *auth.Token) *AuthUser {
-// 	role, _ := token.Claims["role"].(string)
-// 	email, _ := token.Claims["email"].(string)
-// 	emailVerified, _ := token.Claims["email_verified"].(bool)
-// 	name, _ := token.Claims["name"].(string)
-// 	// _id for mps
-// 	_id, _ := token.Claims["_id"].(string)
-
-// 	user := &AuthUser{
-// 		UID:           extractTokenId(token),
-// 		ID_:           _id,
-// 		Email:         email,
-// 		EmailVerified: emailVerified,
-// 		Name:          name,
-// 		Roles:         strings.Split(role, "|"),
-// 	}
-
-// 	return user
-// }
-
-// func extractTokenId(token *auth.Token) string {
-// 	id, ok := token.Claims["userId"].(string)
-// 	if ok && id != "" {
-// 		return id
-// 	}
-
-// 	id, ok = token.Claims["user_id"].(string)
-// 	if ok && id != "" {
-// 		return id
-// 	}
-
-// 	return token.UID
-// }
+	return &ctxWithValue, nil
+}

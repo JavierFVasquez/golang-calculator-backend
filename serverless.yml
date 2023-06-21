@@ -63,16 +63,43 @@ functions:
           path: /addition
           method: post
     environment:
-      MONGO_URI:
+      MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
       DB_NAME: truenorth
-  subtraction:
-    handler: bin/v1/subtraction
+  substraction:
+    handler: bin/v1/substraction
     events:
       - httpApi:
-          path: /subtraction
+          path: /substraction
           method: post
     environment:
-      MONGO_URI:
+      MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
+      DB_NAME: truenorth
+  multiplication:
+    handler: bin/v1/multiplication
+    events:
+      - httpApi:
+          path: /multiplication
+          method: post
+    environment:
+      MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
+      DB_NAME: truenorth
+  division:
+    handler: bin/v1/division
+    events:
+      - httpApi:
+          path: /division
+          method: post
+    environment:
+      MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
+      DB_NAME: truenorth
+  squareRoot:
+    handler: bin/v1/squareRoot
+    events:
+      - httpApi:
+          path: /squareRoot
+          method: post
+    environment:
+      MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
       DB_NAME: truenorth
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

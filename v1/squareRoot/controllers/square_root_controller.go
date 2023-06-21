@@ -7,23 +7,23 @@ import (
 
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/auth"
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/services"
+	"github.com/JavierFVasquez/truenorth-calculator-backend/v1/squareRoot/services"
 	"github.com/aws/aws-lambda-go/events"
 )
 
 type Response events.APIGatewayProxyResponse
 
-type AdditionController struct {
-	service services.BasicOperationServiceIF
+type SquareRootController struct {
+	service services.NewSquareRootServiceIF
 }
 
-func NewAdditionController(createService services.BasicOperationServiceIF) AdditionController {
-	return AdditionController{
+func NewSquareRootController(createService services.NewSquareRootServiceIF) SquareRootController {
+	return SquareRootController{
 		service: createService,
 	}
 }
 
-func (controller *AdditionController) AdditionController(ctx context.Context, request events.APIGatewayProxyRequest) (Response, error) {
+func (controller *SquareRootController) SquareRootController(ctx context.Context, request events.APIGatewayProxyRequest) (Response, error) {
 	ctxWithValue, err := auth.AuthMiddleware(ctx, request)
 	if err != nil {
 		return Response{StatusCode: 401}, nil
@@ -36,9 +36,9 @@ func (controller *AdditionController) AdditionController(ctx context.Context, re
 		return Response{StatusCode: 400}, err
 	}
 
-	operation.Operation = models.ADDITION
+	operation.Operation = models.SQUARE_ROOT
 
-	record, operationErr := controller.service.BasicOperation(*ctxWithValue, operation)
+	record, operationErr := controller.service.SquareRoot(*ctxWithValue, operation)
 	if operationErr != nil {
 		errorResponse := map[string]interface{}{
 			"error": (*operationErr).Error(),

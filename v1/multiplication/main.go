@@ -8,7 +8,7 @@ import (
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/constants"
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/repositories"
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/services"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/v1/addition/controllers"
+	"github.com/JavierFVasquez/truenorth-calculator-backend/v1/multiplication/controllers"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/pkgerrors"
@@ -32,9 +32,9 @@ func main() {
 	operationRepository := repositories.NewOperationRepository(mongoClient, string(constants.OperationCollection), &logger)
 	basicOperationService := services.NewBasicOperationService(recordRepository, operationRepository, &logger)
 
-	additionController := controllers.NewAdditionController(basicOperationService)
+	multiplicationController := controllers.NewMultiplicationController(basicOperationService)
 
-	lambda.Start(additionController.AdditionController)
+	lambda.Start(multiplicationController.MultiplicationController)
 }
 
 func getEnv(key string, defaultValue string) string {

@@ -7,8 +7,8 @@ import (
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/clients"
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/constants"
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/repositories"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/services"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/v1/addition/controllers"
+	"github.com/JavierFVasquez/truenorth-calculator-backend/v1/squareRoot/services"
+	"github.com/JavierFVasquez/truenorth-calculator-backend/v1/squareRoot/controllers"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/pkgerrors"
@@ -30,11 +30,11 @@ func main() {
 
 	recordRepository := repositories.NewRecordRepository(mongoClient, string(constants.RecordCollection), &logger)
 	operationRepository := repositories.NewOperationRepository(mongoClient, string(constants.OperationCollection), &logger)
-	basicOperationService := services.NewBasicOperationService(recordRepository, operationRepository, &logger)
+	squareRootService := services.NewSquareRootService(recordRepository, operationRepository, &logger)
 
-	additionController := controllers.NewAdditionController(basicOperationService)
+	squareRootController := controllers.NewSquareRootController(squareRootService)
 
-	lambda.Start(additionController.AdditionController)
+	lambda.Start(squareRootController.SquareRootController)
 }
 
 func getEnv(key string, defaultValue string) string {

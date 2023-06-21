@@ -7,12 +7,12 @@ import (
 )
 
 type Record struct {
-	ID    string   `faker:"uuid_hyphenated" json:"id" bson:"id"`
-	User  User   `faker:"user" json:"user" bson:"user"`
-	Operation Operation   `faker:"operation" json:"operation" bson:"operation"`
-	Amount float64 `json:"amount" bson:"amount"`
-	UserBalance float64 `json:"userBalance" bson:"userBalance"`
-	CreatedAt *time.Time  `json:"createdAt" bson:"createdAt"`
+	ID          string     `faker:"uuid_hyphenated" json:"id" bson:"id"`
+	User        User       `faker:"user" json:"user" bson:"user"`
+	Operation   Operation  `faker:"operation" json:"operation" bson:"operation"`
+	Amount      float64    `json:"amount" bson:"amount"`
+	UserBalance float64    `json:"userBalance" bson:"userBalance"`
+	CreatedAt   *time.Time `json:"createdAt" bson:"createdAt"`
 }
 
 func NewRecord(user User, operation Operation, amount, userBalance float64) *Record {

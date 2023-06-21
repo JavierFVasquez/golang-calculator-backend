@@ -8,7 +8,7 @@ Resources:
       CodeUri: .
       Handler: bin/v1/addition
       Runtime: go1.x
-      Timeout: 10
+      Timeout: 60
       Events:
         ApiGatewayEvent:
           Type: Api
@@ -19,17 +19,69 @@ Resources:
         Variables:
           MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
           DB_NAME: truenorth
-  subtraction:
+  substraction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: .
-      Handler: bin/v1/subtraction
+      Handler: bin/v1/substraction
       Runtime: go1.x
+      Timeout: 60
       Events:
         ApiGatewayEvent:
           Type: Api
           Properties:
-            Path: /subtraction
+            Path: /substraction
+            Method: post
+      Environment:
+        Variables:
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: truenorth
+  multiplication:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: bin/v1/multiplication
+      Runtime: go1.x
+      Timeout: 60
+      Events:
+        ApiGatewayEvent:
+          Type: Api
+          Properties:
+            Path: /multiplication
+            Method: post
+      Environment:
+        Variables:
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: truenorth
+  division:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: bin/v1/division
+      Runtime: go1.x
+      Timeout: 60
+      Events:
+        ApiGatewayEvent:
+          Type: Api
+          Properties:
+            Path: /division
+            Method: post
+      Environment:
+        Variables:
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: truenorth
+  squareRoot:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: bin/v1/squareRoot
+      Runtime: go1.x
+      Timeout: 60
+      Events:
+        ApiGatewayEvent:
+          Type: Api
+          Properties:
+            Path: /squareRoot
             Method: post
       Environment:
         Variables:
