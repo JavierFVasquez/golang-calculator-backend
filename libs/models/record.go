@@ -13,6 +13,7 @@ type Record struct {
 	Amount      float64    `json:"amount" bson:"amount"`
 	UserBalance float64    `json:"userBalance" bson:"userBalance"`
 	CreatedAt   *time.Time `json:"createdAt" bson:"createdAt"`
+	DeletedAt   *time.Time `json:"deletedAt" bson:"deletedAt"`
 }
 
 func NewRecord(user User, operation Operation, amount, userBalance float64) *Record {
@@ -25,6 +26,7 @@ func NewRecord(user User, operation Operation, amount, userBalance float64) *Rec
 		Amount:      amount,
 		UserBalance: userBalance,
 		CreatedAt:   &now,
+		DeletedAt:   nil,
 	}
 	return &record
 }

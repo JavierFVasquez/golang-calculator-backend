@@ -7,22 +7,22 @@ import (
 
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/auth"
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/services"
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/utils"
+	"github.com/JavierFVasquez/truenorth-calculator-backend/v1/randomString/services"
 	"github.com/aws/aws-lambda-go/events"
 )
 
-type DivisionController struct {
-	service services.BasicOperationServiceIF
+type RandomStringController struct {
+	service services.RandomStringServiceIF
 }
 
-func NewDivisionController(createService services.BasicOperationServiceIF) DivisionController {
-	return DivisionController{
+func NewRandomStringController(createService services.RandomStringServiceIF) RandomStringController {
+	return RandomStringController{
 		service: createService,
 	}
 }
 
-func (controller *DivisionController) DivisionController(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+func (controller *RandomStringController) RandomStringController(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	ctxWithValue, err := auth.AuthMiddleware(ctx, request)
 	if err != nil {
 		return events.APIGatewayProxyResponse{StatusCode: 401}, nil
@@ -35,9 +35,9 @@ func (controller *DivisionController) DivisionController(ctx context.Context, re
 		return utils.APIError(&err, &buf, 400), nil
 	}
 
-	operation.Operation = models.DIVISION
+	operation.Operation = models.RANDOM_STRING
 
-	record, operationErr := controller.service.BasicOperation(*ctxWithValue, operation)
+	record, operationErr := controller.service.RandomString(*ctxWithValue, operation)
 	if operationErr != nil {
 		errorResponse := map[string]interface{}{
 			"error": (*operationErr).Error(),

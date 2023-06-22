@@ -8,10 +8,9 @@ import (
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/auth"
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/services"
+	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/utils"
 	"github.com/aws/aws-lambda-go/events"
 )
-
-type Response events.APIGatewayProxyResponse
 
 type AdditionController struct {
 	service services.BasicOperationServiceIF
@@ -23,17 +22,17 @@ func NewAdditionController(createService services.BasicOperationServiceIF) Addit
 	}
 }
 
-func (controller *AdditionController) AdditionController(ctx context.Context, request events.APIGatewayProxyRequest) (Response, error) {
+func (controller *AdditionController) AdditionController(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	ctxWithValue, err := auth.AuthMiddleware(ctx, request)
 	if err != nil {
-		return Response{StatusCode: 401}, nil
+		return events.APIGatewayProxyResponse{StatusCode: 401}, nil
 	}
 
 	var buf bytes.Buffer
 
 	var operation models.Operation
 	if err := json.Unmarshal([]byte(request.Body), &operation); err != nil {
-		return Response{StatusCode: 400}, err
+		return utils.APIError(&err, &buf, 400), nil
 	}
 
 	operation.Operation = models.ADDITION
@@ -45,10 +44,10 @@ func (controller *AdditionController) AdditionController(ctx context.Context, re
 		}
 		body, marshalErr := json.Marshal(errorResponse)
 		if marshalErr != nil {
-			return Response{StatusCode: 400}, marshalErr
+			return utils.APIError(&marshalErr, &buf, 400), nil
 		}
 		json.HTMLEscape(&buf, body)
-		return Response{
+		return events.APIGatewayProxyResponse{
 			StatusCode:      400,
 			IsBase64Encoded: false,
 			Body:            buf.String(),
@@ -59,11 +58,11 @@ func (controller *AdditionController) AdditionController(ctx context.Context, re
 	}
 	body, marshalErr := json.Marshal(record)
 	if marshalErr != nil {
-		return Response{StatusCode: 500}, marshalErr
+		return events.APIGatewayProxyResponse{StatusCode: 500}, marshalErr
 	}
 	json.HTMLEscape(&buf, body)
 
-	resp := Response{
+	resp := events.APIGatewayProxyResponse{
 		StatusCode:      200,
 		IsBase64Encoded: false,
 		Body:            buf.String(),

@@ -7,8 +7,8 @@ import (
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/clients"
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/constants"
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/repositories"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/v1/squareRoot/controllers"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/v1/squareRoot/services"
+	"github.com/JavierFVasquez/truenorth-calculator-backend/v1/record/controllers"
+	"github.com/JavierFVasquez/truenorth-calculator-backend/v1/record/services"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/pkgerrors"
@@ -29,12 +29,11 @@ func main() {
 	defer mongoClose()
 
 	recordRepository := repositories.NewRecordRepository(mongoClient, string(constants.RecordCollection), &logger)
-	operationRepository := repositories.NewOperationRepository(mongoClient, string(constants.OperationCollection), &logger)
-	squareRootService := services.NewSquareRootService(recordRepository, operationRepository, &logger)
+	recordService := services.NewRecordService(recordRepository, &logger)
 
-	squareRootController := controllers.NewSquareRootController(squareRootService)
+	recordController := controllers.NewRecordController(recordService)
 
-	lambda.Start(squareRootController.SquareRootController)
+	lambda.Start(recordController.RecordController)
 }
 
 func getEnv(key string, defaultValue string) string {

@@ -15,6 +15,11 @@ Resources:
           Properties:
             Path: /addition
             Method: post
+            Cors:
+              AllowMethods: "'GET, POST, PUT'"
+              AllowHeaders: "'Content-Type,Authorization'"
+              AllowOrigin: "'*'"
+              AllowCredentials: false
       Environment:
         Variables:
           MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
@@ -32,6 +37,11 @@ Resources:
           Properties:
             Path: /substraction
             Method: post
+            Cors:
+              AllowMethods: "'GET, POST, PUT'"
+              AllowHeaders: "'Content-Type,Authorization'"
+              AllowOrigin: "'*'"
+              AllowCredentials: false
       Environment:
         Variables:
           MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
@@ -49,6 +59,11 @@ Resources:
           Properties:
             Path: /multiplication
             Method: post
+            Cors:
+              AllowMethods: "'GET, POST, PUT'"
+              AllowHeaders: "'Content-Type,Authorization'"
+              AllowOrigin: "'*'"
+              AllowCredentials: false
       Environment:
         Variables:
           MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
@@ -66,6 +81,11 @@ Resources:
           Properties:
             Path: /division
             Method: post
+            Cors:
+              AllowMethods: "'GET, POST, PUT'"
+              AllowHeaders: "'Content-Type,Authorization'"
+              AllowOrigin: "'*'"
+              AllowCredentials: false
       Environment:
         Variables:
           MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
@@ -83,7 +103,65 @@ Resources:
           Properties:
             Path: /squareRoot
             Method: post
+            Cors:
+              AllowMethods: "'GET, POST, PUT'"
+              AllowHeaders: "'Content-Type,Authorization'"
+              AllowOrigin: "'*'"
+              AllowCredentials: false
       Environment:
         Variables:
           MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
           DB_NAME: truenorth
+  randomString:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: bin/v1/randomString
+      Runtime: go1.x
+      Timeout: 60
+      Events:
+        ApiGatewayEvent:
+          Type: Api
+          Properties:
+            Path: /randomString
+            Method: post
+            Cors:
+              AllowMethods: "'GET, POST, PUT'"
+              AllowHeaders: "'Content-Type,Authorization'"
+              AllowOrigin: "'*'"
+              AllowCredentials: false
+      Environment:
+        Variables:
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: truenorth
+  recordList:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: bin/v1/recordList
+      Runtime: go1.x
+      Timeout: 60
+      Events:
+        ApiGatewayEvent:
+          Type: Api
+          Properties:
+            Path: /record
+            Method: get
+            Cors:
+              AllowMethods: "'GET, POST, PUT'"
+              AllowHeaders: "'Content-Type,Authorization'"
+              AllowOrigin: "'*'"
+              AllowCredentials: false
+      Environment:
+        Variables:
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: truenorth
+
+Globals:
+  Function:
+    Timeout: 20
+  Api:
+    Cors:
+      AllowMethods: "'GET,POST,OPTIONS'"
+      AllowHeaders: "'content-type'"
+      AllowOrigin: "'*'"

@@ -46,9 +46,9 @@ func (repo *RecordRepository) CreateNewRecord(ctx context.Context, operation mod
 	return nil, err
 }
 
-func (repo *RecordRepository) GetRecordsByUserId(ctx context.Context, ids string, options *models.PaginationParams) (*models.PaginatedResponse[models.Record], error) {
+func (repo *RecordRepository) GetRecordsByUserId(ctx context.Context, id string, options *models.PaginationParams) (*models.PaginatedResponse[models.Record], error) {
 	aggOptions := aggregationPipes.PaginationToAggregation(options)
-	aggregation := aggregations.BuildGetRecordsByUserIdAggregation(ids, &aggOptions)
+	aggregation := aggregations.BuildGetRecordsByUserIdAggregation(id, &aggOptions)
 	pagedRecords := []models.PaginatedResponse[models.Record]{}
 	allRecords := []models.Record{}
 
