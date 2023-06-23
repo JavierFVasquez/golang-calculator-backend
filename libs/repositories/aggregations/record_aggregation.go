@@ -11,9 +11,11 @@ func BuildGetRecordsByUserIdAggregation(id string, options *aggregationModels.Ag
 	matchPipe := bson.D{
 		{Key: "$match",
 			Value: bson.D{
-				{Key: "user.id",
-					Value: id,
-				},
+				{Key: "user.id", Value: id},
+				{Key: "$or", Value: bson.A{
+					bson.D{{Key: "deletedAt", Value: nil}},
+					bson.D{{Key: "deletedAt", Value: bson.D{{Key: "$exists", Value: false}}}},
+				}},
 			},
 		},
 	}

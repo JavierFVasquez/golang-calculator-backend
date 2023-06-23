@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/auth"
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
@@ -36,25 +37,14 @@ func (controller *DivisionController) DivisionController(ctx context.Context, re
 	}
 
 	operation.Operation = models.DIVISION
+	if operation.Operand2 == 0 {
+		divisionByZeroErr := errors.New("DIVISION_BY_ZERO_ERROR")
+		return utils.APIError(&divisionByZeroErr, &buf, 400), nil
+	}
 
 	record, operationErr := controller.service.BasicOperation(*ctxWithValue, operation)
 	if operationErr != nil {
-		errorResponse := map[string]interface{}{
-			"error": (*operationErr).Error(),
-		}
-		body, marshalErr := json.Marshal(errorResponse)
-		if marshalErr != nil {
-			return utils.APIError(&marshalErr, &buf, 400), nil
-		}
-		json.HTMLEscape(&buf, body)
-		return events.APIGatewayProxyResponse{
-			StatusCode:      400,
-			IsBase64Encoded: false,
-			Body:            buf.String(),
-			Headers: map[string]string{
-				"Content-Type": "application/json",
-			},
-		}, nil
+		return utils.APIError(operationErr, &buf, 412), nil
 	}
 	body, marshalErr := json.Marshal(record)
 	if marshalErr != nil {
@@ -67,7 +57,9 @@ func (controller *DivisionController) DivisionController(ctx context.Context, re
 		IsBase64Encoded: false,
 		Body:            buf.String(),
 		Headers: map[string]string{
-			"Content-Type": "application/json",
+			"Content-Type":                     "application/json",
+			"Access-Control-Allow-Origin":      "*",
+			"Access-Control-Allow-Credentials": "true",
 		},
 	}
 	return resp, nil

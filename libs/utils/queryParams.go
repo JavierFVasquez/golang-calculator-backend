@@ -6,7 +6,7 @@ import (
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
 )
 
-func ParsePaginationParams(queryParams map[string]string) (*models.PaginationParams) {
+func ParsePaginationParams(queryParams map[string]string) *models.PaginationParams {
 	page, pageErr := strconv.Atoi(queryParams["page"])
 	if pageErr != nil {
 		page = 1

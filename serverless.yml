@@ -1,23 +1,9 @@
-# Welcome to Serverless!
-#
-# This file is the main config file for your service.
-# It's very minimal at this point and uses default values.
-# You can always add more config options for more control.
-# We've included some commented out config examples here.
-# Just uncomment any of them to get that config option.
-#
-# For full config options, check the docs:
-#    docs.serverless.com
-#
-# Happy Coding!
-
 service: truenorth-calculator-backend
-# app and org for use with dashboard.serverless.com
+useDotenv: true
+
 app: truenorth-calculator-backend
 org: javierfvasquezr
 
-# You can pin your service to only deploy with a specific Serverless version
-# Check out our docs for more details
 frameworkVersion: "3"
 configValidationMode: error
 
@@ -26,6 +12,9 @@ provider:
   runtime: go1.x
   httpApi:
     cors: true
+  environment:
+    MONGO_URI: ${env:MONGO_URI}
+    DB_NAME: ${env:DB_NAME}
 
 package:
   patterns:
@@ -39,60 +28,48 @@ functions:
       - httpApi:
           path: /addition
           method: post
-    environment:
-      MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-      DB_NAME: truenorth
-  # substraction:
-  #   handler: bin/v1/substraction
-  #   events:
-  #     - httpApi:
-  #         path: /substraction
-  #         method: post
-  #   environment:
-  #     MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-  #     DB_NAME: truenorth
-  # multiplication:
-  #   handler: bin/v1/multiplication
-  #   events:
-  #     - httpApi:
-  #         path: /multiplication
-  #         method: post
-  #   environment:
-  #     MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-  #     DB_NAME: truenorth
-  # division:
-  #   handler: bin/v1/division
-  #   events:
-  #     - httpApi:
-  #         path: /division
-  #         method: post
-  #   environment:
-  #     MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-  #     DB_NAME: truenorth
-  # squareRoot:
-  #   handler: bin/v1/squareRoot
-  #   events:
-  #     - httpApi:
-  #         path: /squareRoot
-  #         method: post
-  #   environment:
-  #     MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-  #     DB_NAME: truenorth
-  # randomString:
-  #   handler: bin/v1/randomString
-  #   events:
-  #     - httpApi:
-  #         path: /randomString
-  #         method: post
-  #   environment:
-  #     MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-  #     DB_NAME: truenorth
-  # recordList:
-  #   handler: bin/v1/recordList
-  #   events:
-  #     - httpApi:
-  #         path: /record
-  #         method: get
-  #   environment:
-  #     MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-  #     DB_NAME: truenorth
+  substraction:
+    handler: bin/v1/substraction
+    events:
+      - httpApi:
+          path: /substraction
+          method: post
+  multiplication:
+    handler: bin/v1/multiplication
+    events:
+      - httpApi:
+          path: /multiplication
+          method: post
+  division:
+    handler: bin/v1/division
+    events:
+      - httpApi:
+          path: /division
+          method: post
+  squareRoot:
+    handler: bin/v1/squareRoot
+    events:
+      - httpApi:
+          path: /squareRoot
+          method: post
+  randomString:
+    handler: bin/v1/randomString
+    events:
+      - httpApi:
+          path: /randomString
+          method: post
+      - httpApi:
+          path: /record
+          method: options
+  recordList:
+    handler: bin/v1/recordList
+    events:
+      - httpApi:
+          path: /record
+          method: get
+  getBalance:
+    handler: bin/v1/getBalance
+    events:
+      - httpApi:
+          path: /balance
+          method: get

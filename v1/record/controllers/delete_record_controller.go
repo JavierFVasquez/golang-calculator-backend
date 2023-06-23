@@ -11,32 +11,31 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 )
 
-type RecordController struct {
+type DeleteRecordController struct {
 	service services.RecordServiceIF
 }
 
-func NewRecordController(createService services.RecordServiceIF) RecordController {
-	return RecordController{
+func NewDeleteRecordController(createService services.RecordServiceIF) DeleteRecordController {
+	return DeleteRecordController{
 		service: createService,
 	}
 }
 
-func (controller *RecordController) RecordController(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+func (controller *DeleteRecordController) DeleteRecordController(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	var buf bytes.Buffer
-
 
 	ctxWithValue, err := auth.AuthMiddleware(ctx, request)
 	if err != nil {
 		return utils.APIError(err, &buf, 401), nil
 	}
 
-	options := utils.ParsePaginationParams(request.QueryStringParameters)
+	recordId := request.PathParameters["id"]
 
-	recordListPaginated, operationErr := controller.service.GetRecordList(*ctxWithValue, options)
+	deletedRecord, operationErr := controller.service.DeleteRecord(*ctxWithValue, &recordId)
 	if operationErr != nil {
 		return utils.APIError(operationErr, &buf, 400), nil
 	}
-	body, marshalErr := json.Marshal(recordListPaginated)
+	body, marshalErr := json.Marshal(deletedRecord)
 	if marshalErr != nil {
 		return utils.APIError(&marshalErr, &buf, 400), nil
 	}
@@ -47,9 +46,9 @@ func (controller *RecordController) RecordController(ctx context.Context, reques
 		IsBase64Encoded: false,
 		Body:            buf.String(),
 		Headers: map[string]string{
-			"Content-Type": "application/json",
-			"Access-Control-Allow-Origin" : "*",
-			"Access-Control-Allow-Credentials" : "true",
+			"Content-Type":                     "application/json",
+			"Access-Control-Allow-Origin":      "*",
+			"Access-Control-Allow-Credentials": "true",
 		},
 	}
 	return resp, nil

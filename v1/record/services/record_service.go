@@ -37,10 +37,10 @@ func (service *RecordService) GetRecordList(
 		if userValue, ok := user.(models.User); ok {
 			userIdValue := userValue.ID
 
-			result, randomErr := service.recordRepo.GetRecordsByUserId(ctx, userIdValue, options)
-			if randomErr != nil {
-				fmt.Println("Get operation record error")
-				return nil, &randomErr
+			result, recordListErr := service.recordRepo.GetRecordsByUserId(ctx, userIdValue, options)
+			if recordListErr != nil {
+				fmt.Println("Get record list error")
+				return nil, &recordListErr
 			}
 
 			return result, nil
@@ -49,4 +49,16 @@ func (service *RecordService) GetRecordList(
 	}
 	err := errors.New("NO_USER_ERROR")
 	return nil, &err
+}
+
+func (service *RecordService) DeleteRecord(
+	ctx context.Context,
+	recordId *string,
+) (*models.Record, *error) {
+	result, randomErr := service.recordRepo.DeleteRecord(ctx, recordId)
+	if randomErr != nil {
+		fmt.Println("delete record record error")
+		return nil, &randomErr
+	}
+	return result, nil
 }

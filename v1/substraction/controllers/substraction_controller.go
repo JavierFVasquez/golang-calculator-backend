@@ -39,22 +39,7 @@ func (controller *SubstractionController) SubstractionController(ctx context.Con
 
 	record, operationErr := controller.service.BasicOperation(*ctxWithValue, operation)
 	if operationErr != nil {
-		errorResponse := map[string]interface{}{
-			"error": (*operationErr).Error(),
-		}
-		body, marshalErr := json.Marshal(errorResponse)
-		if marshalErr != nil {
-			return utils.APIError(&marshalErr, &buf, 400), nil
-		}
-		json.HTMLEscape(&buf, body)
-		return events.APIGatewayProxyResponse{
-			StatusCode:      400,
-			IsBase64Encoded: false,
-			Body:            buf.String(),
-			Headers: map[string]string{
-				"Content-Type": "application/json",
-			},
-		}, nil
+		return utils.APIError(operationErr, &buf, 412), nil
 	}
 	body, marshalErr := json.Marshal(record)
 	if marshalErr != nil {
@@ -67,7 +52,9 @@ func (controller *SubstractionController) SubstractionController(ctx context.Con
 		IsBase64Encoded: false,
 		Body:            buf.String(),
 		Headers: map[string]string{
-			"Content-Type": "application/json",
+			"Content-Type":                     "application/json",
+			"Access-Control-Allow-Origin":      "*",
+			"Access-Control-Allow-Credentials": "true",
 		},
 	}
 	return resp, nil

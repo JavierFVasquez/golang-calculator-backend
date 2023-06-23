@@ -7,7 +7,7 @@ import (
 )
 
 type Record struct {
-	ID          string     `faker:"uuid_hyphenated" json:"id" bson:"id"`
+	ID          string     `faker:"uuid_hyphenated" json:"_id" bson:"_id"`
 	User        User       `faker:"user" json:"user" bson:"user"`
 	Operation   Operation  `faker:"operation" json:"operation" bson:"operation"`
 	Amount      float64    `json:"amount" bson:"amount"`

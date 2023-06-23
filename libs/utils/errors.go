@@ -10,7 +10,7 @@ import (
 func APIError(paramError *error, buf *bytes.Buffer, statusCode int) events.APIGatewayProxyResponse {
 
 	errorResponse := map[string]interface{}{
-		"error": (*paramError).Error(),
+		"errorMessage": (*paramError).Error(),
 	}
 	body, marshalErr := json.Marshal(errorResponse)
 	if marshalErr != nil {
@@ -22,9 +22,9 @@ func APIError(paramError *error, buf *bytes.Buffer, statusCode int) events.APIGa
 		IsBase64Encoded: false,
 		Body:            (*buf).String(),
 		Headers: map[string]string{
-			"Content-Type": "application/json",
+			"Content-Type":                 "application/json",
 			"Access-Control-Allow-Headers": "Content-Type, Authorization",
-			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Origin":  "*",
 			"Access-Control-Allow-Methods": "OPTIONS,POST,GET",
 		},
 	}

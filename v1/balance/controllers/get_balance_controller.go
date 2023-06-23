@@ -6,23 +6,22 @@ import (
 	"encoding/json"
 
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/auth"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
 	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/utils"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/v1/squareRoot/services"
+	"github.com/JavierFVasquez/truenorth-calculator-backend/v1/balance/services"
 	"github.com/aws/aws-lambda-go/events"
 )
 
-type SquareRootController struct {
-	service services.NewSquareRootServiceIF
+type GetBalanceController struct {
+	service services.NewBalanceServiceIF
 }
 
-func NewSquareRootController(createService services.NewSquareRootServiceIF) SquareRootController {
-	return SquareRootController{
+func NewGetBalanceController(createService services.NewBalanceServiceIF) GetBalanceController {
+	return GetBalanceController{
 		service: createService,
 	}
 }
 
-func (controller *SquareRootController) SquareRootController(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+func (controller *GetBalanceController) GetBalanceController(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	ctxWithValue, err := auth.AuthMiddleware(ctx, request)
 	if err != nil {
 		return events.APIGatewayProxyResponse{StatusCode: 401}, nil
@@ -30,18 +29,11 @@ func (controller *SquareRootController) SquareRootController(ctx context.Context
 
 	var buf bytes.Buffer
 
-	var operation models.Operation
-	if err := json.Unmarshal([]byte(request.Body), &operation); err != nil {
-		return utils.APIError(&err, &buf, 400), nil
-	}
-
-	operation.Operation = models.SQUARE_ROOT
-
-	record, operationErr := controller.service.SquareRoot(*ctxWithValue, operation)
+	userWithBalance, operationErr := controller.service.GetBalance(*ctxWithValue)
 	if operationErr != nil {
 		return utils.APIError(operationErr, &buf, 412), nil
 	}
-	body, marshalErr := json.Marshal(record)
+	body, marshalErr := json.Marshal(userWithBalance)
 	if marshalErr != nil {
 		return events.APIGatewayProxyResponse{StatusCode: 500}, marshalErr
 	}
