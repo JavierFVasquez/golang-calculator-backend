@@ -10,7 +10,7 @@ _In this project, we have a Golang application that deploys a REST API with a se
 
 _These are the endpoints that can be accessed from SwaggerUI, with [this OpenAPI specification](https://raw.githubusercontent.com/JavierFVasquez/truenorth-calculator-backend/master/open_api_specification.yml):_
 
-###[Swagger Link](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/JavierFVasquez/truenorth-calculator-backend/master/open_api_specification.yml)
+### [Swagger Link](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/JavierFVasquez/truenorth-calculator-backend/master/open_api_specification.yml)
 
 ## Prerequisites 📋
 
