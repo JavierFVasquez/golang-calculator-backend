@@ -10,9 +10,9 @@ _In this project, we have a Golang application that deploys a REST API with a se
 
 _These are the endpoints that can be accessed from SwaggerUI, with [this OpenAPI specification](https://raw.githubusercontent.com/JavierFVasquez/truenorth-calculator-backend/master/open_api_specification.yml):_
 
-####[Swagger Link](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/JavierFVasquez/truenorth-calculator-backend/master/open_api_specification.yml)
+###[Swagger Link](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/JavierFVasquez/truenorth-calculator-backend/master/open_api_specification.yml)
 
-### Prerequisites 📋
+## Prerequisites 📋
 
 - _You need to create a `.env` file in the project root directory with the environment variable for the MongoDB cluster URL and database name._
 
@@ -24,7 +24,7 @@ _These are the endpoints that can be accessed from SwaggerUI, with [this OpenAPI
 - You need to have Docker installed
 - Install [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html) in order to run this project locally
 
-### Installation 🔧
+## Installation 🔧
 
 _If you want to perform a step-by-step installation and execution, you should execute the following commands:_
 
