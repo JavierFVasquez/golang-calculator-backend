@@ -65,6 +65,12 @@ functions:
       - httpApi:
           path: /record
           method: get
+  deleteRecord:
+    handler: bin/v1/deleteRecord
+    events:
+      - httpApi:
+          path: /record/{id}
+          method: delete
   getBalance:
     handler: bin/v1/getBalance
     events:
