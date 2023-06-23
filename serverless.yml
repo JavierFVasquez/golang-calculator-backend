@@ -20,6 +20,7 @@ package:
   patterns:
     - "!./**"
     - ./bin/**
+    - "!./bin/v1/*.zip"
 
 functions:
   addition:
@@ -58,9 +59,6 @@ functions:
       - httpApi:
           path: /randomString
           method: post
-      - httpApi:
-          path: /record
-          method: options
   recordList:
     handler: bin/v1/recordList
     events:

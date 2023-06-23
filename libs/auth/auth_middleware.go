@@ -15,8 +15,8 @@ import (
 )
 
 func AuthMiddleware(ctx context.Context, request events.APIGatewayProxyRequest) (*context.Context, *error) {
-	authToken := strings.Replace(request.Headers["Authorization"], "Bearer ", "", 1)
-	fmt.Println("TOKEN=", authToken)
+	authToken := strings.Replace(request.Headers["authorization"], "Bearer ", "", 1)
+	fmt.Println("Headers=", request.Headers)
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
 		Config: aws.Config{
 			Region: aws.String("us-east-1"),
