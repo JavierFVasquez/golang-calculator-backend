@@ -78,17 +78,72 @@ func (_c *MockRecordRepositoryIF_CreateNewRecord_Call) RunAndReturn(run func(con
 	return _c
 }
 
-// GetRecordsByUserId provides a mock function with given fields: ctx, ids, options
-func (_m *MockRecordRepositoryIF) GetRecordsByUserId(ctx context.Context, ids string, options *models.PaginationParams) (*models.PaginatedResponse[models.Record], error) {
-	ret := _m.Called(ctx, ids, options)
+// DeleteRecord provides a mock function with given fields: ctx, recordId
+func (_m *MockRecordRepositoryIF) DeleteRecord(ctx context.Context, recordId *string) (*models.Record, error) {
+	ret := _m.Called(ctx, recordId)
+
+	var r0 *models.Record
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *string) (*models.Record, error)); ok {
+		return rf(ctx, recordId)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *string) *models.Record); ok {
+		r0 = rf(ctx, recordId)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*models.Record)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *string) error); ok {
+		r1 = rf(ctx, recordId)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// MockRecordRepositoryIF_DeleteRecord_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DeleteRecord'
+type MockRecordRepositoryIF_DeleteRecord_Call struct {
+	*mock.Call
+}
+
+// DeleteRecord is a helper method to define mock.On call
+//   - ctx context.Context
+//   - recordId *string
+func (_e *MockRecordRepositoryIF_Expecter) DeleteRecord(ctx interface{}, recordId interface{}) *MockRecordRepositoryIF_DeleteRecord_Call {
+	return &MockRecordRepositoryIF_DeleteRecord_Call{Call: _e.mock.On("DeleteRecord", ctx, recordId)}
+}
+
+func (_c *MockRecordRepositoryIF_DeleteRecord_Call) Run(run func(ctx context.Context, recordId *string)) *MockRecordRepositoryIF_DeleteRecord_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(*string))
+	})
+	return _c
+}
+
+func (_c *MockRecordRepositoryIF_DeleteRecord_Call) Return(_a0 *models.Record, _a1 error) *MockRecordRepositoryIF_DeleteRecord_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *MockRecordRepositoryIF_DeleteRecord_Call) RunAndReturn(run func(context.Context, *string) (*models.Record, error)) *MockRecordRepositoryIF_DeleteRecord_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// GetRecordsByUserId provides a mock function with given fields: ctx, id, options
+func (_m *MockRecordRepositoryIF) GetRecordsByUserId(ctx context.Context, id string, options *models.PaginationParams) (*models.PaginatedResponse[models.Record], error) {
+	ret := _m.Called(ctx, id, options)
 
 	var r0 *models.PaginatedResponse[models.Record]
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, string, *models.PaginationParams) (*models.PaginatedResponse[models.Record], error)); ok {
-		return rf(ctx, ids, options)
+		return rf(ctx, id, options)
 	}
 	if rf, ok := ret.Get(0).(func(context.Context, string, *models.PaginationParams) *models.PaginatedResponse[models.Record]); ok {
-		r0 = rf(ctx, ids, options)
+		r0 = rf(ctx, id, options)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*models.PaginatedResponse[models.Record])
@@ -96,7 +151,7 @@ func (_m *MockRecordRepositoryIF) GetRecordsByUserId(ctx context.Context, ids st
 	}
 
 	if rf, ok := ret.Get(1).(func(context.Context, string, *models.PaginationParams) error); ok {
-		r1 = rf(ctx, ids, options)
+		r1 = rf(ctx, id, options)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -111,13 +166,13 @@ type MockRecordRepositoryIF_GetRecordsByUserId_Call struct {
 
 // GetRecordsByUserId is a helper method to define mock.On call
 //   - ctx context.Context
-//   - ids string
+//   - id string
 //   - options *models.PaginationParams
-func (_e *MockRecordRepositoryIF_Expecter) GetRecordsByUserId(ctx interface{}, ids interface{}, options interface{}) *MockRecordRepositoryIF_GetRecordsByUserId_Call {
-	return &MockRecordRepositoryIF_GetRecordsByUserId_Call{Call: _e.mock.On("GetRecordsByUserId", ctx, ids, options)}
+func (_e *MockRecordRepositoryIF_Expecter) GetRecordsByUserId(ctx interface{}, id interface{}, options interface{}) *MockRecordRepositoryIF_GetRecordsByUserId_Call {
+	return &MockRecordRepositoryIF_GetRecordsByUserId_Call{Call: _e.mock.On("GetRecordsByUserId", ctx, id, options)}
 }
 
-func (_c *MockRecordRepositoryIF_GetRecordsByUserId_Call) Run(run func(ctx context.Context, ids string, options *models.PaginationParams)) *MockRecordRepositoryIF_GetRecordsByUserId_Call {
+func (_c *MockRecordRepositoryIF_GetRecordsByUserId_Call) Run(run func(ctx context.Context, id string, options *models.PaginationParams)) *MockRecordRepositoryIF_GetRecordsByUserId_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		run(args[0].(context.Context), args[1].(string), args[2].(*models.PaginationParams))
 	})
@@ -130,6 +185,60 @@ func (_c *MockRecordRepositoryIF_GetRecordsByUserId_Call) Return(_a0 *models.Pag
 }
 
 func (_c *MockRecordRepositoryIF_GetRecordsByUserId_Call) RunAndReturn(run func(context.Context, string, *models.PaginationParams) (*models.PaginatedResponse[models.Record], error)) *MockRecordRepositoryIF_GetRecordsByUserId_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// GetUserMostRecentRecord provides a mock function with given fields: ctx
+func (_m *MockRecordRepositoryIF) GetUserMostRecentRecord(ctx context.Context) (*models.Record, error) {
+	ret := _m.Called(ctx)
+
+	var r0 *models.Record
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context) (*models.Record, error)); ok {
+		return rf(ctx)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context) *models.Record); ok {
+		r0 = rf(ctx)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*models.Record)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context) error); ok {
+		r1 = rf(ctx)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// MockRecordRepositoryIF_GetUserMostRecentRecord_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetUserMostRecentRecord'
+type MockRecordRepositoryIF_GetUserMostRecentRecord_Call struct {
+	*mock.Call
+}
+
+// GetUserMostRecentRecord is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *MockRecordRepositoryIF_Expecter) GetUserMostRecentRecord(ctx interface{}) *MockRecordRepositoryIF_GetUserMostRecentRecord_Call {
+	return &MockRecordRepositoryIF_GetUserMostRecentRecord_Call{Call: _e.mock.On("GetUserMostRecentRecord", ctx)}
+}
+
+func (_c *MockRecordRepositoryIF_GetUserMostRecentRecord_Call) Run(run func(ctx context.Context)) *MockRecordRepositoryIF_GetUserMostRecentRecord_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *MockRecordRepositoryIF_GetUserMostRecentRecord_Call) Return(_a0 *models.Record, _a1 error) *MockRecordRepositoryIF_GetUserMostRecentRecord_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *MockRecordRepositoryIF_GetUserMostRecentRecord_Call) RunAndReturn(run func(context.Context) (*models.Record, error)) *MockRecordRepositoryIF_GetUserMostRecentRecord_Call {
 	_c.Call.Return(run)
 	return _c
 }

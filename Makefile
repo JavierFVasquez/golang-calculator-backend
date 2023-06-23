@@ -35,7 +35,6 @@ clean:
 	rm -rf ./bin ./vendor Gopkg.lock
 
 start-dev: clean build
-	bash env.sh
 	sam local start-api
 
 deploy: clean build

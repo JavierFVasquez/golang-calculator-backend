@@ -1,0 +1,450 @@
+openapi: "3.0.1"
+info:
+  title: "dev-truenorth-calculator-backend"
+  version: "2023-06-23 15:17:37UTC"
+servers:
+  - url: "https://54t4g2pui3.execute-api.us-east-1.amazonaws.com/{basePath}"
+    variables:
+      basePath:
+        default: ""
+tags:
+  - name: "STAGE"
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+paths:
+  /balance:
+    get:
+      responses:
+        default:
+          description: "Default response for GET /balance"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  balance:
+                    type: number
+  /record:
+    get:
+      responses:
+        default:
+          description: "Default response for GET /record"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metadata:
+                    type: object
+                    properties:
+                      page:
+                        type: number
+                      pageSize:
+                        type: number
+                      length:
+                        type: number
+                      hasNext:
+                        type: boolean
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        user:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                            email:
+                              type: string
+                        operation:
+                          type: object
+                          properties:
+                            operation:
+                              type: string
+                            operand1:
+                              type: number
+                            operand2:
+                              type: number
+                            result:
+                              type: number
+                            stringResult:
+                              type: string
+                            cost:
+                              type: number
+                        amount:
+                          type: number
+                        userBalance:
+                          type: number
+                        createdAt:
+                          type: string
+                        deletedAt:
+                          type: string
+  /addition:
+    post:
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                operand1:
+                  type: number
+                operand2:
+                  type: number
+              required:
+                - operand1
+                - operand2
+      responses:
+        default:
+          description: "Default response for POST /addition"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+                      balance:
+                        type: number
+                  operation:
+                    type: object
+                    properties:
+                      operation:
+                        type: string
+                      operand1:
+                        type: number
+                      operand2:
+                        type: number
+                      result:
+                        type: number
+                      stringResult:
+                        type: string
+                      cost:
+                        type: number
+                  amount:
+                    type: number
+                  userBalance:
+                    type: number
+                  createdAt:
+                    type: string
+  /division:
+    post:
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                operand1:
+                  type: number
+                operand2:
+                  type: number
+              required:
+                - operand1
+                - operand2
+      responses:
+        default:
+          description: "Default response for POST /division"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+                      balance:
+                        type: number
+                  operation:
+                    type: object
+                    properties:
+                      operation:
+                        type: string
+                      operand1:
+                        type: number
+                      operand2:
+                        type: number
+                      result:
+                        type: number
+                      stringResult:
+                        type: string
+                      cost:
+                        type: number
+                  amount:
+                    type: number
+                  userBalance:
+                    type: number
+                  createdAt:
+                    type: string
+  /multiplication:
+    post:
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                operand1:
+                  type: number
+                operand2:
+                  type: number
+              required:
+                - operand1
+                - operand2
+      responses:
+        default:
+          description: "Default response for POST /addition"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+                      balance:
+                        type: number
+                  operation:
+                    type: object
+                    properties:
+                      operation:
+                        type: string
+                      operand1:
+                        type: number
+                      operand2:
+                        type: number
+                      result:
+                        type: number
+                      stringResult:
+                        type: string
+                      cost:
+                        type: number
+                  amount:
+                    type: number
+                  userBalance:
+                    type: number
+                  createdAt:
+                    type: string
+  /substraction:
+    post:
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                operand1:
+                  type: number
+                operand2:
+                  type: number
+              required:
+                - operand1
+                - operand2
+      responses:
+        default:
+          description: "Default response for POST /addition"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+                      balance:
+                        type: number
+                  operation:
+                    type: object
+                    properties:
+                      operation:
+                        type: string
+                      operand1:
+                        type: number
+                      operand2:
+                        type: number
+                      result:
+                        type: number
+                      stringResult:
+                        type: string
+                      cost:
+                        type: number
+                  amount:
+                    type: number
+                  userBalance:
+                    type: number
+                  createdAt:
+                    type: string
+  /squareRoot:
+    post:
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                operand1:
+                  type: number
+                operand2:
+                  type: number
+              required:
+                - operand1
+                - operand2
+      responses:
+        default:
+          description: "Default response for POST /addition"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+                      balance:
+                        type: number
+                  operation:
+                    type: object
+                    properties:
+                      operation:
+                        type: string
+                      operand1:
+                        type: number
+                      operand2:
+                        type: number
+                      result:
+                        type: number
+                      stringResult:
+                        type: string
+                      cost:
+                        type: number
+                  amount:
+                    type: number
+                  userBalance:
+                    type: number
+                  createdAt:
+                    type: string
+  /randomString:
+    post:
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                operand1:
+                  type: number
+                operand2:
+                  type: number
+              required:
+                - operand1
+                - operand2
+      responses:
+        default:
+          description: "Default response for POST /addition"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+                      balance:
+                        type: number
+                  operation:
+                    type: object
+                    properties:
+                      operation:
+                        type: string
+                      operand1:
+                        type: number
+                      operand2:
+                        type: number
+                      result:
+                        type: number
+                      stringResult:
+                        type: string
+                      cost:
+                        type: number
+                  amount:
+                    type: number
+                  userBalance:
+                    type: number
+                  createdAt:
+                    type: string
