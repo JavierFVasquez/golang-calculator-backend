@@ -1,14 +1,14 @@
 openapi: "3.0.1"
 info:
-  title: "dev-truenorth-calculator-backend"
+  title: "dev-golang-calculator-backend"
   version: "2023-06-23 15:17:37UTC"
 servers:
-  - url: "https://54t4g2pui3.execute-api.us-east-1.amazonaws.com/{basePath}"
-    variables:
-      basePath:
-        default: ""
+- url: "https://54t4g2pui3.execute-api.us-east-1.amazonaws.com/{basePath}"
+  variables:
+    basePath:
+      default: ""
 tags:
-  - name: "STAGE"
+- name: "STAGE"
 components:
   securitySchemes:
     BearerAuth:
@@ -97,7 +97,7 @@ paths:
   /addition:
     post:
       security:
-        - BearerAuth: []
+      - BearerAuth: []
       requestBody:
         content:
           application/json:
@@ -109,8 +109,8 @@ paths:
                 operand2:
                   type: number
               required:
-                - operand1
-                - operand2
+              - operand1
+              - operand2
       responses:
         default:
           description: "Default response for POST /addition"
@@ -156,7 +156,7 @@ paths:
   /division:
     post:
       security:
-        - BearerAuth: []
+      - BearerAuth: []
       requestBody:
         content:
           application/json:
@@ -168,8 +168,8 @@ paths:
                 operand2:
                   type: number
               required:
-                - operand1
-                - operand2
+              - operand1
+              - operand2
       responses:
         default:
           description: "Default response for POST /division"
@@ -215,7 +215,7 @@ paths:
   /multiplication:
     post:
       security:
-        - BearerAuth: []
+      - BearerAuth: []
       requestBody:
         content:
           application/json:
@@ -227,8 +227,8 @@ paths:
                 operand2:
                   type: number
               required:
-                - operand1
-                - operand2
+              - operand1
+              - operand2
       responses:
         default:
           description: "Default response for POST /addition"
@@ -274,7 +274,7 @@ paths:
   /substraction:
     post:
       security:
-        - BearerAuth: []
+      - BearerAuth: []
       requestBody:
         content:
           application/json:
@@ -286,8 +286,8 @@ paths:
                 operand2:
                   type: number
               required:
-                - operand1
-                - operand2
+              - operand1
+              - operand2
       responses:
         default:
           description: "Default response for POST /addition"
@@ -333,7 +333,7 @@ paths:
   /squareRoot:
     post:
       security:
-        - BearerAuth: []
+      - BearerAuth: []
       requestBody:
         content:
           application/json:
@@ -345,8 +345,8 @@ paths:
                 operand2:
                   type: number
               required:
-                - operand1
-                - operand2
+              - operand1
+              - operand2
       responses:
         default:
           description: "Default response for POST /addition"
@@ -392,7 +392,7 @@ paths:
   /randomString:
     post:
       security:
-        - BearerAuth: []
+      - BearerAuth: []
       requestBody:
         content:
           application/json:
@@ -404,8 +404,8 @@ paths:
                 operand2:
                   type: number
               required:
-                - operand1
-                - operand2
+              - operand1
+              - operand2
       responses:
         default:
           description: "Default response for POST /addition"

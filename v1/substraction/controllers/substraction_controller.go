@@ -5,10 +5,10 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/auth"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/services"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/utils"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/auth"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/models"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/services"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/utils"
 	"github.com/aws/aws-lambda-go/events"
 )
 

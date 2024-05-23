@@ -1,4 +1,4 @@
-module github.com/JavierFVasquez/truenorth-calculator-backend
+module github.com/JavierFVasquez/golang-calculator-backend
 
 go 1.19
 

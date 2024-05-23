@@ -5,7 +5,7 @@ package mocks
 import (
 	context "context"
 
-	models "github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
+	models "github.com/JavierFVasquez/golang-calculator-backend/libs/models"
 	mock "github.com/stretchr/testify/mock"
 )
 

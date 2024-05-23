@@ -5,10 +5,10 @@ import (
 	"errors"
 	"time"
 
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/clients"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/repositories/aggregations"
-	aggregationPipes "github.com/JavierFVasquez/truenorth-calculator-backend/libs/repositories/aggregations/pipes"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/clients"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/models"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/repositories/aggregations"
+	aggregationPipes "github.com/JavierFVasquez/golang-calculator-backend/libs/repositories/aggregations/pipes"
 
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"

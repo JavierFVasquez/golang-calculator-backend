@@ -1,8 +1,8 @@
 package aggregations
 
 import (
-	aggregationModels "github.com/JavierFVasquez/truenorth-calculator-backend/libs/repositories/aggregations/models"
-	aggregationPipes "github.com/JavierFVasquez/truenorth-calculator-backend/libs/repositories/aggregations/pipes"
+	aggregationModels "github.com/JavierFVasquez/golang-calculator-backend/libs/repositories/aggregations/models"
+	aggregationPipes "github.com/JavierFVasquez/golang-calculator-backend/libs/repositories/aggregations/pipes"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )

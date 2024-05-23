@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/repositories"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/models"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/repositories"
 
 	"github.com/rs/zerolog"
 )

@@ -26,8 +26,8 @@ Resources:
             Method: post
       Environment:
         Variables:
-          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-          DB_NAME: truenorth
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@golang.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: golang
   substraction:
     Type: AWS::Serverless::Function
     Properties:
@@ -43,8 +43,8 @@ Resources:
             Method: post
       Environment:
         Variables:
-          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-          DB_NAME: truenorth
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@golang.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: golang
   multiplication:
     Type: AWS::Serverless::Function
     Properties:
@@ -60,8 +60,8 @@ Resources:
             Method: post
       Environment:
         Variables:
-          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-          DB_NAME: truenorth
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@golang.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: golang
   division:
     Type: AWS::Serverless::Function
     Properties:
@@ -77,8 +77,8 @@ Resources:
             Method: post
       Environment:
         Variables:
-          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-          DB_NAME: truenorth
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@golang.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: golang
   squareRoot:
     Type: AWS::Serverless::Function
     Properties:
@@ -94,8 +94,8 @@ Resources:
             Method: post
       Environment:
         Variables:
-          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-          DB_NAME: truenorth
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@golang.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: golang
   randomString:
     Type: AWS::Serverless::Function
     Properties:
@@ -111,8 +111,8 @@ Resources:
             Method: post
       Environment:
         Variables:
-          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-          DB_NAME: truenorth
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@golang.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: golang
   recordList:
     Type: AWS::Serverless::Function
     Properties:
@@ -140,8 +140,8 @@ Resources:
               AllowCredentials: false
       Environment:
         Variables:
-          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-          DB_NAME: truenorth
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@golang.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: golang
   deleteRecord:
     Type: AWS::Serverless::Function
     Properties:
@@ -164,8 +164,8 @@ Resources:
             Method: delete
       Environment:
         Variables:
-          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-          DB_NAME: truenorth
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@golang.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: golang
   getBalance:
     Type: AWS::Serverless::Function
     Properties:
@@ -188,5 +188,5 @@ Resources:
             Method: get
       Environment:
         Variables:
-          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority
-          DB_NAME: truenorth
+          MONGO_URI: mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@golang.yeghafr.mongodb.net/?retryWrites=true&w=majority
+          DB_NAME: golang

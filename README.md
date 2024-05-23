@@ -1,6 +1,6 @@
-# TrueNorth Test
+# Golang Test
 
-_TrueNorth Calculator API - Backend application_
+_Golang Calculator API - Backend application_
 
 ## Getting Started 🚀
 
@@ -8,17 +8,17 @@ _In this project, we have a Golang application that deploys a REST API with a se
 
 ## Endpoints (Live 🔴) 🛠️
 
-_These are the endpoints that can be accessed from SwaggerUI, with [this OpenAPI specification](https://raw.githubusercontent.com/JavierFVasquez/truenorth-calculator-backend/master/open_api_specification.yml):_
+_These are the endpoints that can be accessed from SwaggerUI, with [this OpenAPI specification](https://raw.githubusercontent.com/JavierFVasquez/golang-calculator-backend/master/open_api_specification.yml):_
 
-### [Swagger Link](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/JavierFVasquez/truenorth-calculator-backend/master/open_api_specification.yml)
+### [Swagger Link](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/JavierFVasquez/golang-calculator-backend/master/open_api_specification.yml)
 
 ## Prerequisites 📋
 
 - _You need to create a `.env` file in the project root directory with the environment variable for the MongoDB cluster URL and database name._
 
   ```
-  MONGO_URI="mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@truenorth.yeghafr.mongodb.net/?retryWrites=true&w=majority"
-  DB_NAME="truenorth"
+  MONGO_URI="mongodb+srv://javierfvasquezr:OPSysYjLRg6drbha@golang.yeghafr.mongodb.net/?retryWrites=true&w=majority"
+  DB_NAME="golang"
   ```
 
 - Install [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html) in order to run this project locally

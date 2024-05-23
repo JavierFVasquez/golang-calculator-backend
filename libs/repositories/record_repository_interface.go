@@ -3,7 +3,7 @@ package repositories
 import (
 	"context"
 
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/models"
 )
 
 //go:generate mockery --name RecordRepositoryIF --structname MockRecordRepositoryIF --filename record_repository_mock.go

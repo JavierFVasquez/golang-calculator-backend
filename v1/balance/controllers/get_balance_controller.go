@@ -5,9 +5,9 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/auth"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/utils"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/v1/balance/services"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/auth"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/utils"
+	"github.com/JavierFVasquez/golang-calculator-backend/v1/balance/services"
 	"github.com/aws/aws-lambda-go/events"
 )
 

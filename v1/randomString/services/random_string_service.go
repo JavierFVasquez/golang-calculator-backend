@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/repositories"
-	random_string_repositories "github.com/JavierFVasquez/truenorth-calculator-backend/v1/randomString/repositories"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/models"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/repositories"
+	random_string_repositories "github.com/JavierFVasquez/golang-calculator-backend/v1/randomString/repositories"
 
 	"github.com/rs/zerolog"
 )

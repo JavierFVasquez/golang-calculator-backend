@@ -3,7 +3,7 @@ package services
 import (
 	"context"
 
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/models"
 )
 
 //go:generate mockery --name BasicOperationServiceIF --structname MockBasicOperationServiceIF --filename basic_operation_service_mock.go

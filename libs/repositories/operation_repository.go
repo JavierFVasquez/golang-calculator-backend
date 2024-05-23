@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/clients"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/clients"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/models"
 
 	"github.com/rs/zerolog"
 	"go.mongodb.org/mongo-driver/bson"

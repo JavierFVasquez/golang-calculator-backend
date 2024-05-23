@@ -1,7 +1,7 @@
-service: truenorth-calculator-backend
+service: golang-calculator-backend
 useDotenv: true
 
-app: truenorth-calculator-backend
+app: golang-calculator-backend
 org: javierfvasquezr
 
 frameworkVersion: "3"
@@ -18,62 +18,62 @@ provider:
 
 package:
   patterns:
-    - "!./**"
-    - ./bin/**
-    - "!./bin/v1/*.zip"
+  - "!./**"
+  - ./bin/**
+  - "!./bin/v1/*.zip"
 
 functions:
   addition:
     handler: bin/v1/addition
     events:
-      - httpApi:
-          path: /addition
-          method: post
+    - httpApi:
+        path: /addition
+        method: post
   substraction:
     handler: bin/v1/substraction
     events:
-      - httpApi:
-          path: /substraction
-          method: post
+    - httpApi:
+        path: /substraction
+        method: post
   multiplication:
     handler: bin/v1/multiplication
     events:
-      - httpApi:
-          path: /multiplication
-          method: post
+    - httpApi:
+        path: /multiplication
+        method: post
   division:
     handler: bin/v1/division
     events:
-      - httpApi:
-          path: /division
-          method: post
+    - httpApi:
+        path: /division
+        method: post
   squareRoot:
     handler: bin/v1/squareRoot
     events:
-      - httpApi:
-          path: /squareRoot
-          method: post
+    - httpApi:
+        path: /squareRoot
+        method: post
   randomString:
     handler: bin/v1/randomString
     events:
-      - httpApi:
-          path: /randomString
-          method: post
+    - httpApi:
+        path: /randomString
+        method: post
   recordList:
     handler: bin/v1/recordList
     events:
-      - httpApi:
-          path: /record
-          method: get
+    - httpApi:
+        path: /record
+        method: get
   deleteRecord:
     handler: bin/v1/deleteRecord
     events:
-      - httpApi:
-          path: /record/{id}
-          method: delete
+    - httpApi:
+        path: /record/{id}
+        method: delete
   getBalance:
     handler: bin/v1/getBalance
     events:
-      - httpApi:
-          path: /balance
-          method: get
+    - httpApi:
+        path: /balance
+        method: get

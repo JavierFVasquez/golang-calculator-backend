@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/models"
 	"github.com/aws/aws-lambda-go/events"
 
 	"github.com/aws/aws-sdk-go/aws"

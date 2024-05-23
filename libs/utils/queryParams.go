@@ -3,7 +3,7 @@ package utils
 import (
 	"strconv"
 
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/models"
 )
 
 func ParsePaginationParams(queryParams map[string]string) *models.PaginationParams {

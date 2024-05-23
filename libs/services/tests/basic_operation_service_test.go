@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/repositories/mocks"
-	"github.com/JavierFVasquez/truenorth-calculator-backend/libs/services"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/models"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/repositories/mocks"
+	"github.com/JavierFVasquez/golang-calculator-backend/libs/services"
 	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"

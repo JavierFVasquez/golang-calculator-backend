@@ -1,6 +1,6 @@
 package pipes
 
-import "github.com/JavierFVasquez/truenorth-calculator-backend/libs/models"
+import "github.com/JavierFVasquez/golang-calculator-backend/libs/models"
 
 func InitPagination(params *models.PaginationParams) {
 	if params.Page == 0 {

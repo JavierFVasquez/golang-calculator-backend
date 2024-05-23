@@ -25,6 +25,6 @@
   version = "1.x"
 
 [[constraint]]
-  name = "github.com/JavierFVasquez/truenorth-calculator-backend"
+  name = "github.com/JavierFVasquez/golang-calculator-backend"
   version = "1.0.0"
 
